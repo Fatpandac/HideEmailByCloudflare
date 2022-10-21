@@ -1,7 +1,18 @@
 import { useListRoutingRules } from "./hooks";
 
 import { useState } from "react";
-import { Action, ActionPanel, Alert, closeMainWindow, confirmAlert, Icon, List, popToRoot, showHUD, showToast, Toast } from "@raycast/api";
+import {
+  Action,
+  ActionPanel,
+  Alert,
+  confirmAlert,
+  Icon,
+  List,
+  popToRoot,
+  showHUD,
+  showToast,
+  Toast,
+} from "@raycast/api";
 import { deleteRoutingRule } from "./utils";
 
 export default function Command() {
@@ -46,9 +57,10 @@ export default function Command() {
                       primaryAction: {
                         title: "Delete",
                         style: Alert.ActionStyle.Destructive,
-                      }
+                      },
                     }))
-                  ) return;
+                  )
+                    return;
 
                   showToast({ style: Toast.Style.Animated, title: "Deleting routing rule..." });
 

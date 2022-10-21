@@ -2,6 +2,7 @@ import { createRoutingRule } from "./utils";
 import { useAllRoutingRules, useGetEmailDomain, useListDestinationAddresses } from "./hooks";
 
 import { useState } from "react";
+import cryptoRandomString from "crypto-random-string";
 import {
   Form,
   ActionPanel,
@@ -31,6 +32,16 @@ export default function Command() {
     if (createdEmailError && createdEmailError.length > 0) {
       setCreatedEmailError(undefined);
     }
+  }
+
+  function createDefaultEmail() {
+    let randomString: string;
+
+    do {
+      randomString = cryptoRandomString({ length: 12, type: "url-safe" });
+    } while (allRoutingRules.find((rule) => rule === randomString));
+
+    return randomString;
   }
 
   async function handleSubmit(values: Values) {
@@ -65,6 +76,7 @@ export default function Command() {
         id="createdEmail"
         title="Custom address"
         placeholder="Email prefix"
+        defaultValue={createDefaultEmail()}
         error={createdEmailError}
         onChange={dropCreatedEmailErrorIfNeeded}
         onBlur={(event) => {

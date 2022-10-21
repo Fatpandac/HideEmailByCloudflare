@@ -10,11 +10,11 @@ export function useAllRoutingRules() {
   useEffect(() => {
     (async () => {
       try {
-        let idx = 1;
-        // eslint-disable-next-line prefer-const
-        let res,
-          total,
-          allRules: Array<string> = [];
+        let idx = 1,
+          res,
+          total;
+        const allRules: Array<string> = [];
+
         do {
           res = await listRoutingRules(idx);
           setAllRoutingRules(
